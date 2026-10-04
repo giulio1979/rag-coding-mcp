@@ -631,3 +631,98 @@ pre {
 .muted {
   color: var(--text-muted);
 }
+
+/* ---------- Relation groups in detail pane ---------- */
+
+.relation-group {
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.relation-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: var(--app-bg);
+  font-size: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.relation-head code {
+  background: #fff;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.relation-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.relation-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.relation-item:last-child {
+  border-bottom: none;
+}
+
+.relation-item:hover {
+  background: var(--accent-soft);
+}
+
+.relation-item .name {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- Filter section in left sidebar ---------- */
+
+.filter-group {
+  margin: 0 4px 10px;
+}
+
+.filter-group-head {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-sec);
+  padding: 4px 8px;
+}
+
+.filter-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.filter-check:hover {
+  background: var(--app-bg);
+}
+
+.filter-check.on {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-weight: 500;
+}
+
+.filter-check input {
+  accent-color: var(--accent);
+}

@@ -163,6 +163,14 @@ def test_ui_blocks_path_traversal(state_with_ui: AppState) -> None:
         assert resp.status_code in (403, 404)
 
 
+def test_graphql_playground(state: AppState) -> None:
+    with _http_client(state) as client:
+        resp = client.get("/graphql-ui")
+        assert resp.status_code == 200
+        assert resp.headers["content-type"].startswith("text/html")
+        assert "GraphiQL" in resp.text
+
+
 # --- helpers --------------------------------------------------------------
 
 

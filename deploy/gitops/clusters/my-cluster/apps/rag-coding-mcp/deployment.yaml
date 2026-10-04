@@ -24,7 +24,7 @@ spec:
         fsGroup: 1000
       containers:
         - name: rag-coding-mcp
-          image: registry.bizrader.uk/rag-coding-mcp:0.3.3
+          image: registry.bizrader.uk/rag-coding-mcp:0.4.0
           imagePullPolicy: Always
           ports:
             - name: http
