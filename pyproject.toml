@@ -1,0 +1,39 @@
+[project]
+name = "rag-coding-mcp"
+version = "0.1.0"
+description = "Central knowledge-only MCP server backed by a typed graph in SQLite."
+authors = [
+    { name = "Iulius", email = "hutuleac.iulius@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "fastembed>=0.8.1",
+    "fastmcp>=0.4",
+    "strawberry-graphql>=0.230",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pytest-cov>=5",
+    "ruff>=0.6",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -m 'not slow'"
+markers = [
+    "slow: tests that download models or hit the network",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501"]

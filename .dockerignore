@@ -1,0 +1,36 @@
+# Ignore everything by default, then re-add what we need.
+*
+
+# Needed at build time
+!pyproject.toml
+!uv.lock
+!README.md
+!src/
+!src/**
+!ui/
+!ui/**
+
+# Explicitly exclude noise under src/
+src/**/__pycache__
+src/**/*.pyc
+
+# Exclude UI build artifacts and deps (we build inside the image).
+ui/node_modules
+ui/dist
+
+# Everything below is for extra belt-and-braces: the leading `*` above
+# already excludes these, but listing them documents intent.
+.venv/
+.git/
+.gitignore
+.github/
+.vscode/
+.idea/
+dist/
+build/
+specs/
+tests/
+deploy/
+Dockerfile
+.dockerignore
+AGENTS.md

@@ -1,0 +1,79 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rag-coding-mcp-ui-ingress
+  namespace: rag-coding-mcp-ns
+  labels:
+    app: rag-coding-mcp
+    role: ui
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+    traefik.ingress.kubernetes.io/router.middlewares: authelia-ns-authelia-forwardauth@kubernetescrd
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - rag-coding-mcp.bizrader.uk
+      secretName: rag-coding-mcp-bizrader-uk-tls
+  rules:
+    - host: rag-coding-mcp.bizrader.uk
+      http:
+        paths:
+          - path: /ui
+            pathType: Prefix
+            backend:
+              service:
+                name: rag-coding-mcp
+                port:
+                  number: 8080
+          - path: /graphql-ui
+            pathType: Prefix
+            backend:
+              service:
+                name: rag-coding-mcp
+                port:
+                  number: 8080
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                name: rag-coding-mcp
+                port:
+                  number: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rag-coding-mcp-api-ingress
+  namespace: rag-coding-mcp-ns
+  labels:
+    app: rag-coding-mcp
+    role: api
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - rag-coding-mcp.bizrader.uk
+      secretName: rag-coding-mcp-bizrader-uk-tls
+  rules:
+    - host: rag-coding-mcp.bizrader.uk
+      http:
+        paths:
+          - path: /mcp
+            pathType: Prefix
+            backend:
+              service:
+                name: rag-coding-mcp
+                port:
+                  number: 8080
+          - path: /graphql
+            pathType: Prefix
+            backend:
+              service:
+                name: rag-coding-mcp
+                port:
+                  number: 8080
